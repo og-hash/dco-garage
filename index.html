@@ -2,12 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Ensure proper scaling on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <title>DCO Garage</title>
   <style>
     /* Global Styles */
@@ -20,16 +16,6 @@
       flex-direction: column;
       min-height: 100vh;
     }
-    a {
-      color: #f90;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    a:hover {
-      color: #ffb84d;
-    }
-
-    /* Sidebar */
     .sidebar {
       width: 240px;
       background-color: #1e1e1e;
@@ -54,21 +40,63 @@
       background-color: #f90;
       color: #000;
     }
-
-    /* Header */
-    header {
-      background-color: #1e1e1e;
-      padding: 10px;
-      text-align: center;
-      color: #ffffff;
-      font-size: 24px;
-      position: fixed;
-      top: 0;
-      left: 240px;
-      right: 0;
-      z-index: 1000;
+    .content {
+      margin-left: 240px;
+      padding: 80px 20px 20px;
+      transition: margin-left 0.3s;
+      padding-bottom: 50px; /* Prevent footer overlap */
     }
-
+    .hidden {
+      display: none;
+    }
+    .content h1 {
+      color: #f90;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    table th,
+    table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+    table th {
+      background-color: #333;
+      color: #f90;
+    }
+    table tr:nth-child(even) {
+      background-color: #292929;
+    }
+    table tr:hover {
+      background-color: #444;
+    }
+    a {
+      color: #f90;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #ffb84d;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+    ul li:last-child {
+      margin-bottom: 0;
+    }
     /* Top Menu */
     .top-menu {
       display: flex;
@@ -97,62 +125,6 @@
       background-color: #f90;
       color: #000;
     }
-
-    /* Main Content Area */
-    .content {
-      margin-left: 240px;
-      padding: 80px 20px 20px;
-      transition: margin-left 0.3s;
-      padding-bottom: 50px; /* Prevent footer overlap */
-    }
-    .hidden {
-      display: none;
-    }
-    .content h1 {
-      color: #f90;
-      margin-bottom: 20px;
-    }
-
-    /* Tables */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
-    table th,
-    table td {
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #444;
-    }
-    table th {
-      background-color: #333;
-      color: #f90;
-    }
-    table tr:nth-child(even) {
-      background-color: #292929;
-    }
-    table tr:hover {
-      background-color: #444;
-    }
-
-    /* Unordered Lists */
-    ul {
-      padding: 0;
-      list-style: none;
-      margin: 0;
-    }
-    ul li {
-      margin-bottom: 10px;
-    }
-    ul li:last-child {
-      margin-bottom: 0;
-    }
-
     /* Search Bars */
     .search-bar {
       margin-top: 0;
@@ -185,7 +157,18 @@
       color: #ffffff;
       width: 230px;
     }
-
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      font-size: 14px;
+    }
     /* Input & Button Styles */
     input,
     button {
@@ -202,20 +185,6 @@
     button:hover {
       background-color: #ffb84d;
     }
-
-    /* Footer */
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      padding: 10px;
-      background-color: #1e1e1e;
-      color: #ffffff;
-      font-size: 14px;
-    }
-
     /* Modal Styles */
     #passwordModal {
       display: none; /* Initially hidden */
@@ -256,96 +225,34 @@
     .modal-content button:hover {
       background-color: #0056b3;
     }
-
-    /* 
-    ==========================================================================
-    RESPONSIVE MEDIA QUERIES
-    ==========================================================================
-    */
-    @media (max-width: 768px) {
-      /* Sidebar becomes horizontal at top for smaller screens */
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
-        top: 0;
-        left: 0;
-        padding-top: 0;
-        box-shadow: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-      }
-      .sidebar a {
-        display: block;
-        margin: 5px;
-        padding: 10px;
-      }
-
-      /* Header shifts to top, full width */
-      header {
-        position: static;
-        margin-top: 0;
-        left: 0;
-        right: 0;
-      }
-
-      /* Top menu adjusts beneath header */
-      .top-menu {
-        position: static;
-        margin-top: 0;
-        left: 0;
-        right: 0;
-      }
-
-      /* Content no longer offset by sidebar */
-      .content {
-        margin-left: 0;
-        padding-top: 20px;
-      }
-
-      /* Adjust table text and spacing if needed */
-      table th,
-      table td {
-        padding: 10px;
-        font-size: 14px;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>
+  <header style="background-color: #1e1e1e; padding: 10px; text-align: center; color: #ffffff; font-size: 24px; position: fixed; top: 0; left: 240px; right: 0; z-index: 1000;">
     WELCOME TO DCO GARAGE !!! <i class="fa fa-coffee" style="font-size:24px; color:red;"></i>
   </header>
 
   <div class="sidebar">
+    <!--<h4 style="color: #ffffff; text-align: center; padding: 10px 0;">WELCOME TO DCO GARAGE!</h4>-->
     <a href="#" onclick="showContent('dashboard', this)" class="active">DASHBOARD</a>
     <a href="#" onclick="showContent('sev-monitor', this)">SEV MONITOR</a>
+    <!--<a href="#" onclick="showContent('queue-monitor', this)">QUEUE MONITOR</a>-->
     <a href="#" onclick="showContent('toolkit', this)">TOOLKIT</a>
   </div>
 
   <!-- DASHBOARD Section -->
   <div id="dashboard" class="content">
+    <!--<h1>DASHBOARD</h1>-->
     <div class="top-menu">
       <a href="#" onclick="showTopMenu('common-bookmarks', this)" class="active">COMMON BOOKMARKS</a>
       <a href="#" onclick="showTopMenu('wiki-resources', this)">WIKI RESOURCES</a>
       <a href="#" onclick="showTopMenu('domains-collection', this)">BOOKMARKS MANAGER</a>
       <a href="#" onclick="showTopMenu('updates', this)">UPDATES</a>
       <div class="search-bar" id="bookmarksSearchBar" style="display: flex;">
-        <input
-          type="text"
-          id="bookmarksSearchInput"
-          placeholder="Search bookmarks..."
-          onkeyup="searchBookmarks()"
-        />
+        <input type="text" id="bookmarksSearchInput" placeholder="Search bookmarks..." onkeyup="searchBookmarks()" />
       </div>
       <div class="search-bar" id="wikiSearchBar" style="display: none;">
-        <input
-          type="text"
-          id="wikiSearchInput"
-          placeholder="Search WIKI..."
-          onkeyup="searchwikiresource()"
-        />
+        <input type="text" id="wikiSearchInput" placeholder="Search WIKI..." onkeyup="searchwikiresource()" />
       </div>
     </div>
 
@@ -357,6 +264,7 @@
           <tr>
             <th>DESCRIPTION</th>
             <th>LINK</th>
+            <!-- Actions column removed for the main home page -->
           </tr>
         </thead>
         <tbody>
@@ -368,9 +276,7 @@
     <!-- Wiki Resources -->
     <div id="wiki-resources" class="hidden">
       <br />
-      <p align="center" style="color: orange;">
-        <b>This page is under construction; More links to WIKI Resources are coming!!!</b>
-      </p>
+      <p align="center" style="color: orange;"><b>This page is under construction; More links to WIKI Resources are coming!!!</b></p>
       <table>
         <thead>
           <tr>
@@ -563,11 +469,7 @@
         <p align="center" style="color: orange;">Current Version: [v1.3]</p>
         <div class="announcement">
           <h1>🚀 ANNOUNCEMENT: DCO Garage is Now Live! 🚀</h1>
-          <p>
-            We’re thrilled to introduce <strong>DCO Garage</strong> – a unified hub that
-            provides seamless access to <strong>DCO Tools, Wiki Resources, SEV Monitor, and Toolkit (commands)</strong>
-            all in one convenient location!
-          </p>
+          <p>We’re thrilled to introduce <strong>DCO Garage</strong> – a unified hub that provides seamless access to <strong>DCO Tools, Wiki Resources, SEV Monitor, and Toolkit (commands)</strong> all in one convenient location!</p>
           <br />
           <h2>🔹 What’s New?</h2>
           <ul>
@@ -581,16 +483,10 @@
           <br />
           <h2>📋 How to Access?</h2>
           <p>Click the link below to start exploring:</p>
-          <p>
-            <a href="https://drive-render.corp.amazon.com/view/hpotlia@/AKLScripts/dco_garage.html"><strong>DCO Garage</strong></a>
-          </p>
+          <p><a href="https://drive-render.corp.amazon.com/view/hpotlia@/AKLScripts/dco_garage.html"><strong>DCO Garage</strong></a></p>
           <br />
           <h2 class="feedback">📬 Share Your Feedback!</h2>
-          <p>
-            Your input is crucial to making <strong>DCO Garage</strong> even better. If you
-            encounter any issues or have suggestions for improvements, please share your
-            feedback via:
-          </p>
+          <p>Your input is crucial to making <strong>DCO Garage</strong> even better. If you encounter any issues or have suggestions for improvements, please share your feedback via:</p>
           <ul>
             <!--<li>Google Form: <a href="#">Submit Feedback</a></li>-->
             <li>Slack Channel: <strong>...</strong></li>
@@ -603,7 +499,6 @@
 
       <script>
         const API_BASE_URL = 'https://dashboard-backend-zu2y.onrender.com';
-
         // Load bookmarks from the backend
         async function loadBookmarks() {
           try {
@@ -612,13 +507,11 @@
             if (data.success) {
               const tableBody = document.querySelector('#bookmarksTable tbody');
               tableBody.innerHTML = ''; // Clear existing rows
-              data.bookmarks.forEach((bookmark) => {
+              data.bookmarks.forEach((bookmark, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                   <td>${bookmark.description}</td>
-                  <td><a href="${bookmark.link}" target="_blank">${
-                  bookmark.altText || 'Visit Link'
-                }</a></td>
+                  <td><a href="${bookmark.link}" target="_blank">${bookmark.altText || 'Visit Link'}</a></td>
                 `;
                 tableBody.appendChild(row);
               });
@@ -629,7 +522,6 @@
             console.error('Error loading bookmarks:', error);
           }
         }
-
         // Add a new bookmark
         async function addBookmark() {
           const description = document.getElementById('newDescription').value.trim();
@@ -656,8 +548,7 @@
             console.error('Error adding bookmark:', error);
           }
         }
-
-        // Edit a bookmark (not enabled in UI)
+        // Edit a bookmark (currently not enabled in UI)
         async function editBookmark(index, currentDescription, currentLink, currentAltText) {
           const newDescription = prompt('Edit description:', currentDescription);
           const newLink = prompt('Edit link:', currentLink);
@@ -667,12 +558,7 @@
               const response = await fetch(`${API_BASE_URL}/edit-bookmark`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  index,
-                  description: newDescription,
-                  link: newLink,
-                  altText: newAltText
-                })
+                body: JSON.stringify({ index, description: newDescription, link: newLink, altText: newAltText })
               });
               const data = await response.json();
               if (data.success) {
@@ -686,8 +572,7 @@
             }
           }
         }
-
-        // Delete a bookmark (not enabled in UI)
+        // Delete a bookmark (currently not enabled in UI)
         async function deleteBookmark(index) {
           if (confirm('Are you sure you want to delete this bookmark?')) {
             try {
@@ -708,7 +593,6 @@
             }
           }
         }
-
         // Load bookmarks when the page loads
         document.addEventListener('DOMContentLoaded', loadBookmarks);
       </script>
@@ -716,17 +600,20 @@
 
     <!-- SEV MONITOR Section -->
     <div id="sev-monitor" class="content hidden">
+      <!--<h1>SEV MONITOR</h1>-->
       <p align="center" style="color: orange;">Content for Sev Monitor goes here.</p>
       <p align="center" style="color: orange;">Includes real-time Slack message updates! [Coming Soon]</p>
     </div>
 
     <!-- QUEUE MONITOR Section -->
     <div id="queue-monitor" class="content hidden">
+      <!--<h1>QUEUE MONITOR</h1>-->
       <p>Content for Queue Monitor goes here.</p>
     </div>
 
     <!-- TOOLKIT Section -->
     <div id="toolkit" class="content hidden">
+      <!--<h1>TOOLKIT</h1>-->
       <div class="search-bar1">
         <input type="text" id="searchInput" placeholder="Search toolkit..." onkeyup="searchToolkit()" />
       </div>
@@ -758,14 +645,13 @@
             <td>ACCTON AS 4610</td>
             <td>
               Console with one of these baudrates (115200 or 9600)<br /><br />
-              Select startup mode. If no selection is made within 3 seconds,
-              the ICOS Application will start automatically...<br />
-              <strong>ICOS Startup -- Main Menu</strong><br />
+              Select startup mode. If no selection is made within 3 seconds, the ICOS Application will start automatically...<br />
+              ICOS Startup -- Main Menu<br />
               1 - Start ICOS Application<br />
               2 - Display Utility Menu--<br />
               Select (1, 2): [type 2] and press “ENTER” to <b>Display Utility Menu</b><br /><br />
-              <strong>ICOS Startup Rev: 3.4.3</strong><br />
-              <strong>ICOS Startup -- Utility Menu--</strong><br />
+              ICOS Startup Rev: 3.4.3<br />
+              ICOS Startup -- Utility Menu--<br />
               1 - Start ICOS Application<br />
               2 - Load Code Update Package<br />
               3 - Load Configuration<br />
@@ -811,6 +697,7 @@
               =&gt;at /proc/mtd<br /><br />
               Look for the line where it’s written "open" and note the "mtd" number.<br />
               [example]<br />
+              (...)<br />
               ** Installer Mode Enabled **<br />
               ONIE:/ # cat /proc/mtd<br />
               dev:    size   erasesize  name<br />
